@@ -1,0 +1,19 @@
+[
+    {
+        "text": "The Lego Batman Movie is a 2017 animated superhero comedy film produced by Warner Animation Group, DC Entertainment, RatPac-Dune Entertainment, Lego System A/S, Lin Pictures, Lord Miller Productions, and Vertigo Entertainment, and distributed by Warner Bros. Pictures. It was directed by Chris McKay (in his feature directorial debut) from a screenplay by Seth Grahame-Smith, Chris McKenna, Erik Sommers, Jared Stern, and John Whittington. Based on the characters from the DC Universe created by DC Comics and the Lego DC Super Heroes' Batman toy line, the film is a collaboration between production houses from the United States, Australia, and Denmark, the first spin-off in The Lego Movie franchise and the second installment overall. The film features Will Arnett reprising his role as Batman from The Lego Movie alongside Zach Galifianakis, Michael Cera, Rosario Dawson, and Ralph Fiennes. The story follows the eponymous character (Arnett) as he attempts to overcome his greatest fear while saving Gotham City from the Joker's (Galifianakis) latest scheme.",
+        "samples": [
+            [
+                "Who directed the Lego Batman Movie",
+                "Chris McKay"
+            ],
+            [
+                "Who is Batman trying to save Gotham city from?",
+                "the Joker"
+            ],
+            [
+                "Who is the movie distributed by?",
+                "Warner Bros. Pictures"
+            ]
+        ]
+    }
+]

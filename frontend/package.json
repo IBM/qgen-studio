@@ -1,0 +1,19 @@
+{
+  "name": "qgen",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@carbon/react": "1.33.0",
+    "again": "^0.0.1",
+    "next": "14.2.11",
+    "react": "^18",
+    "react-dom": "^18",
+    "sass": "1.63.6"
+  }
+}

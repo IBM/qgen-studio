@@ -1,0 +1,59 @@
+.yellow-highlight {
+    background-color: #ffeb3b;
+    border-radius: 4px;
+    padding: 2px 4px;
+    font-weight: bold;
+    color: #333;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.yellow-highlight:hover {
+    background-color: #ffd600;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.teal-highlight {
+    background-color: #80cbc4;
+    border-radius: 4px;
+    padding: 2px 4px;
+    font-weight: bold;
+    color: #333;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.teal-highlight:hover {
+    background-color: #4db6ac;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.coral-highlight {
+    background-color: #ffccbc;
+    border-radius: 4px;
+    padding: 2px 4px;
+    font-weight: bold;
+    color: #333;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.coral-highlight:hover {
+    background-color: #ff8a65;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.lavender-highlight {
+    background-color: #e1bee7; 
+    border-radius: 4px;
+    padding: 2px 4px;
+    font-weight: bold;
+    color: #333;           
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.lavender-highlight:hover {
+    background-color: #ba68c8;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}

@@ -1,0 +1,28 @@
+{
+    "id_1": [
+        [
+            "Who directed the Lego Batman Movie",
+            "Chris McKay"
+        ],
+        [
+            "Who is Batman trying to save Gotham city from?",
+            "the Joker"
+        ],
+        [
+            "Who is the movie distributed by?",
+            "Warner Bros. Pictures"
+        ]
+    ],
+    "id_2": [
+        [
+            "What are the three surviving species of camel?",
+            "The three surviving species of camel are:\n1. One-Humped Dromedary Camel: This species makes up 94% of the world's camel population.\n2. Two-Humped Bactrian Camel: This species accounts for 6% of the world's camel population.\n3. Wild Bactrian Camel: This species is not ancestral to the domestic Bactrian camel and is now critically endangered, with fewer than 1,000 individuals remaining."
+        ]
+    ],
+    "id_3": [
+        [
+            "Where can carbon be found?",
+            "Carbon can be found in the atmosphere and on earth. On earth, carbon is mostly stored in rocks and sediments. The rest is located in the ocean, atmosphere, and in living organisms. The location of carbon is constantly in flux due to the carbon cycle. Carbon is released back into the atmosphere when organisms die, volcanoes erupt, fires blaze, fossil fuels are burned, and through a variety of other mechanisms."
+        ]
+    ]
+}
