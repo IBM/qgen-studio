@@ -6,7 +6,7 @@
 QGen Studio enables users to leverage large language models (LLMs) to create custom question-answer datasets and fine-tune scalable, domain-adaptable models on this synthetic data. 
 
 
-https://github.ibm.com/Mohab-Elkaref/qgen-demo/assets/395325/4bfa2835-5432-4aff-826f-e7455fbfbcc2
+https://github.com/user-attachments/assets/7ba6bc92-ecc6-4318-9465-f93708392eab
 
 
 ## Features
