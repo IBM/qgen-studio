@@ -1,0 +1,29 @@
+# WatsonX 
+WATSONX_URL=<insert_url>
+WATSONX_API_KEY=<insert_api_key_here>
+WATSONX_PROJECT_ID=<insert_project_id_here>
+
+# HuggingFace Token
+HUGGINGFACE_TOKEN=<insert_token_here>
+
+# OpenAI 
+OPENAI_API_KEY=<insert_api_key_here>
+
+# Add your HuggingFace models here
+MLX_MODELS = ['meta-llama/Meta-Llama-3.1-8B-Instruct']
+
+# Please add absolute paths to the folder. This logic will be changed in the future
+UPLOAD_PATH = 'path to uploaded files'
+CORPUS_PATH = 'path to processed files'
+PROMPTS_PATH = 'path to store few shot examples'
+DATASETS_PATH = 'path to generated datasets'
+MLX_DATA_PATH = 'path to data processed for training'
+MODELS_PATH = 'path to trained models'
+
+# Example paths (replace .. with the absolute path)
+# UPLOAD_PATH = '../backend/app/data/uploads'
+# CORPUS_PATH = '../backend/app/data/corpus'
+# PROMPTS_PATH = '../backend/app/data/prompts'
+# DATASETS_PATH = '../backend/app/data/generated'
+# MLX_DATA_PATH = '../backend/app/data/mlx_data'
+# MODELS_PATH = '../backend/app/models'

@@ -1,0 +1,42 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow-y: hidden;
+}
+
+.cds--content {
+    height: 95vh;
+}
+
+.box {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+// .box .row {
+//   border: 1px dotted grey;
+// }
+
+.box .row.header {
+  flex: 0 1 auto;
+  /* The above is shorthand for:
+  flex-grow: 0,
+  flex-shrink: 1,
+  flex-basis: auto
+  */
+}
+
+// .box .row.content {
+//     // background-color: rgb(10, 144, 99);
+//   flex: 1 1 auto;
+// }
+
+.box .row.footer {
+  flex: 0 1 40px;
+}
+
+.no-border {
+    border: none;
+}

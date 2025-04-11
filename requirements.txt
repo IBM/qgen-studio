@@ -1,0 +1,14 @@
+fastapi[standard]
+numpy
+mlx>=0.8.0
+transformers
+docling
+openai
+mlx-lm
+sentence-transformers
+stanza
+tfIdfInheritVectorizer
+langchain
+rouge-score
+ibm-watsonx-ai
+langchain-ibm
