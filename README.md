@@ -72,12 +72,16 @@ The studio will start at `localhost:3000`.
 If you use QGen Studio in your projects, please consider citing the following:
 
 ```bib
-@misc{moses2025qgenstudioadaptivequestionanswer,
-      title={QGen Studio: An Adaptive Question-Answer Generation, Training and Evaluation Platform}, 
-      author={Movina Moses and Mohab Elkaref and James Barry and Shinnosuke Tanaka and Vishnudev Kuruvanthodi and Nathan Herr and Campbell D Watson and Geeth De Mel},
+@article{Moses_Elkaref_Barry_Tanaka_Kuruvanthodi_Herr_Watson_Mel_2025,
+      title={QGen Studio: An Adaptive Question-Answer Generation, Training and Evaluation Platform},
+      volume={39},
+      url={https://ojs.aaai.org/index.php/AAAI/article/view/35362},
+      DOI={10.1609/aaai.v39i28.35362},
+      abstractNote={We present QGen Studio: an adaptive question-answer generation, training, and evaluation platform. QGen Studio enables users to leverage large language models (LLMs) to create custom question-answer datasets and fine-tune models on this synthetic data. It features a dataset viewer and model explorer to streamline this process. The dataset viewer provides key metrics and visualizes the context from which the QA pairs are generated, offering insights into data quality. The model explorer supports model comparison, allowing users to contrast the performance of their trained LLMs against other models, supporting performance benchmarking and refinement. QGen Studio delivers an interactive, end-to-end solution for generating QA datasets and training scalable, domain-adaptable models. The studio will be open-sourced soon, allowing users to deploy it locally.},
+      number={28},
+      journal={Proceedings of the AAAI Conference on Artificial Intelligence},
+      author={Moses, Movina and Elkaref, Mohab and Barry, James and Tanaka, Shinnosuke and Kuruvanthodi, Vishnudev and Herr, Nathan and Watson, Campbell D and Mel, Geeth De},
       year={2025},
-      eprint={2504.06136},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2504.06136}, 
+      month={Apr.},
+      pages={29670-29672}
 }
