@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@carbon/react": "1.33.0",
+    "@carbon/react": "1.116.0",
     "again": "^0.0.1",
-    "next": "14.2.11",
-    "react": "^18",
-    "react-dom": "^18",
-    "sass": "1.63.6"
-  }
+    "next": "15.5.25",
+    "react": "^19",
+    "react-dom": "^19",
+    "react-is": "^19",
+    "sass": "1.104.1"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

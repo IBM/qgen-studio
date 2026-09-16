@@ -43,7 +43,7 @@ export default function DocGroups({ project_name, path }) {
                 id: p,
                 name: p,
                 action: <>
-                    <Button kind="ghost" renderIcon={ArrowRight} href={path + project_name + '/' + p} style={{float: "inline-end"}} />
+                    <Button kind="ghost" hasIconOnly iconDescription={'Open ' + p} renderIcon={ArrowRight} href={path + project_name + '/' + p} style={{float: "inline-end"}} />
                 </>
             }))
             setRows(newRows);
@@ -74,21 +74,27 @@ export default function DocGroups({ project_name, path }) {
                 <Table {...getTableProps()}>
                 <TableHead>
                     <TableRow>
-                    {headers.map((header) => (
-                        <TableHeader {...getHeaderProps({ header })}>
+                    {headers.map((header) => {
+                        const { key, ...headerProps } = getHeaderProps({ header });
+                        return (
+                        <TableHeader key={key} {...headerProps}>
                         {header.header}
                         </TableHeader>
-                    ))}
+                        );
+                    })}
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
-                    <TableRow {...getRowProps({ row })}>
+                    {rows.map((row) => {
+                    const { key, ...rowProps } = getRowProps({ row });
+                    return (
+                    <TableRow key={key} {...rowProps}>
                         {row.cells.map((cell) => (
                         <TableCell key={cell.id}>{cell.value}</TableCell>
                         ))}
                     </TableRow>
-                    ))}
+                    );
+                    })}
                 </TableBody>
                 </Table>
             </TableContainer>

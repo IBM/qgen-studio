@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { use, useState, useEffect, useRef } from "react";
 import { Button, Grid, Row, Column, ContainedList, ContainedListItem, ComposedModal, ModalHeader, ModalBody, Heading, Section, Tile, FormGroup, TextInput, TextArea, Stack, Dropdown } from "@carbon/react";
 import { DocumentAdd, TrashCan } from "@carbon/icons-react";
 import { useRouter } from "next/navigation";
 import { getDoc } from "@/app/api/doc_backend";
 import { getPrompts, setPrompts } from "@/app/api/prompt_backend";
 
-export default function Page({params}) {
+export default function Page(props) {
+    const params = use(props.params);
     const router = useRouter();
 
     const [open, setOpen] = useState(false);
@@ -82,9 +83,10 @@ export default function Page({params}) {
                     <div style={{minWidth: "25%", border: "gray solid 2px"}}>
                         <ContainedList label="Prompts" kind="disclosed" size="md">
                             {prompts.map((prompt)=>
-                                <ContainedListItem 
-                                    onClick={()=>handleEditPrompt(prompt.question, prompt.answer)} 
-                                    action={<Button 
+                                <ContainedListItem
+                                    key={prompt.question}
+                                    onClick={()=>handleEditPrompt(prompt.question, prompt.answer)}
+                                    action={<Button
                                                 kind="ghost" 
                                                 iconDescription="Dismiss" 
                                                 hasIconOnly 

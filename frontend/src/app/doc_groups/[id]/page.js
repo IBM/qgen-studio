@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { use, useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import { Button, Grid, Row, Column, ContainedList, ContainedListItem, ComposedModal, ModalHeader, ModalBody, ModalFooter, Heading, Section, Tile } from "@carbon/react";
 import { DocumentAdd, TrashCan } from "@carbon/icons-react";
 import DocUploader from "@/components/DocUploader/DocUploader";
 import { listDocs, getDoc, deleteDocumentGroup, deleteDoc } from "@/app/api/doc_backend";
 
-export default function Page({params}) {
+export default function Page(props) {
+    const params = use(props.params);
     const router = useRouter();
 
     const [docGroupId, setDocGroupId] = useState(decodeURI(params.id))
@@ -110,8 +111,9 @@ export default function Page({params}) {
                         <Column lg={4} md={2} style={{overflowY: "scroll", border: "gray solid 2px", paddingTop: "0rem"}}>
                             <ContainedList label="Documents" kind="disclosed" size="md">
                                 {docList.map((docName)=>
-                                    <ContainedListItem 
-                                        onClick={()=>fetchDoc(docGroupId, docName)} 
+                                    <ContainedListItem
+                                        key={docName}
+                                        onClick={()=>fetchDoc(docGroupId, docName)}
                                         action={<Button 
                                                     kind="ghost" 
                                                     iconDescription="Dismiss" 
@@ -134,7 +136,7 @@ export default function Page({params}) {
                             {docIds.map((id, index) => (
                                 <Section key={id} level={6} style={{ marginBottom: "1rem" }}>
                                     <Heading style={{ fontSize: "0.8rem", color: "#666" }}>{id}</Heading>
-                                    <p><pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{docText[index].join(" ")}</pre></p>
+                                    <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{docText[index].join(" ")}</pre>
                                 </Section>
                             ))}
 

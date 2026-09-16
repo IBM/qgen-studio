@@ -47,8 +47,8 @@ export default function DocGroups() {
                 status: 'Active',
                 blargh: 'foo ' + i,
                 action: <>
-                    <Button kind="ghost" renderIcon={ArrowRight} href={'/doc_groups/' + p.name} style={{float: "inline-end"}} />
-                    <Button kind="ghost" renderIcon={TrashCan} style={{float: "inline-end"}} onClick={()=>handleOnDelete(p.name)} />
+                    <Button kind="ghost" hasIconOnly iconDescription={'Open ' + p.name} renderIcon={ArrowRight} href={'/doc_groups/' + p.name} style={{float: "inline-end"}} />
+                    <Button kind="ghost" hasIconOnly iconDescription={'Delete ' + p.name} renderIcon={TrashCan} style={{float: "inline-end"}} onClick={()=>handleOnDelete(p.name)} />
                 </>
             }))
             setRows(newRows);
@@ -97,21 +97,27 @@ export default function DocGroups() {
                 <Table {...getTableProps()}>
                 <TableHead>
                     <TableRow>
-                    {headers.map((header) => (
-                        <TableHeader {...getHeaderProps({ header })}>
+                    {headers.map((header) => {
+                        const { key, ...headerProps } = getHeaderProps({ header });
+                        return (
+                        <TableHeader key={key} {...headerProps}>
                         {header.header}
                         </TableHeader>
-                    ))}
+                        );
+                    })}
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
-                    <TableRow {...getRowProps({ row })}>
+                    {rows.map((row) => {
+                    const { key, ...rowProps } = getRowProps({ row });
+                    return (
+                    <TableRow key={key} {...rowProps}>
                         {row.cells.map((cell) => (
                         <TableCell key={cell.id}>{cell.value}</TableCell>
                         ))}
                     </TableRow>
-                    ))}
+                    );
+                    })}
                 </TableBody>
                 </Table>
             </TableContainer>
