@@ -4,11 +4,10 @@ import { useEffect, useState } from "react";
 import { Button, Grid, Row, Column, ContainedList, ContainedListItem, ComposedModal, ModalHeader, ModalBody, Heading, Section, Tile, FormGroup, TextInput, Stack, Dropdown } from "@carbon/react";
 import { DocumentAdd, TrashCan } from "@carbon/icons-react";
 import DocUploader from "@/components/DocUploader/DocUploader";
-import { getDisplayName } from "next/dist/shared/lib/utils";
 import { getDocumentGroups } from "../api/doc_backend";
 import DocsTable from "@/components/DocsTable/DocsTable";
 
-export default function Page({params}) {
+export default function Page() {
     const [open, setOpen] = useState(false);
     const [docGroups, setDocGroups] = useState([]);
     const [projectName, setProjectName] = useState(null);
@@ -41,8 +40,9 @@ export default function Page({params}) {
                     <div style={{minWidth: "25%", height: "100%", border: "gray solid 2px"}}>
                         <ContainedList label="Document Groups" kind="disclosed" size="md">
                             {docGroups.map((docGroup)=>
-                                <ContainedListItem 
-                                    // onClick={()=>handleEditPrompt(prompt.question, prompt.answer)} 
+                                <ContainedListItem
+                                    key={docGroup.name}
+                                    // onClick={()=>handleEditPrompt(prompt.question, prompt.answer)}
                                     onClick={()=>setProjectName(docGroup.name)}
                                     >
                                     <strong>{docGroup.name}</strong>

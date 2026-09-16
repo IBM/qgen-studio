@@ -144,17 +144,22 @@ export default function DatasetTable({ projectName, selectedMetrics, highlightTy
                             <TableHead>
                                 <TableRow>
                                     <TableExpandHeader aria-label="expand row" />
-                                    {headers.map((header, i) => (
-                                        <TableHeader key={i} {...getHeaderProps({ header })}>
-                                            {header.header}
-                                        </TableHeader>
-                                    ))}
+                                    {headers.map((header, i) => {
+                                        const { key, ...headerProps } = getHeaderProps({ header });
+                                        return (
+                                            <TableHeader key={key ?? i} {...headerProps}>
+                                                {header.header}
+                                            </TableHeader>
+                                        );
+                                    })}
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows.map((row, i) => (
+                                {rows.map((row, i) => {
+                                    const { key: rowKey, ...rowProps } = getRowProps({ row });
+                                    return (
                                     <React.Fragment key={row.id}>
-                                        <TableExpandRow {...getRowProps({ row })}>
+                                        <TableExpandRow {...rowProps}>
                                             {row.cells.map(cell => (
                                                 <TableCell key={cell.id}>{cell.value}</TableCell>
                                             ))}
@@ -165,7 +170,8 @@ export default function DatasetTable({ projectName, selectedMetrics, highlightTy
                                             </div>
                                         </TableExpandedRow>
                                     </React.Fragment>
-                                ))}
+                                    );
+                                })}
                             </TableBody>
                         </Table>
                     </TableContainer>

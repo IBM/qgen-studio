@@ -4,11 +4,10 @@ import { useEffect, useState } from "react";
 import { Button, Grid, Row, Column, ContainedList, ContainedListItem, ComposedModal, ModalHeader, ModalBody, Heading, Section, Tile, FormGroup, TextInput, Stack, Dropdown } from "@carbon/react";
 import { DocumentAdd, TrashCan } from "@carbon/icons-react";
 import DocUploader from "@/components/DocUploader/DocUploader";
-import { getDisplayName } from "next/dist/shared/lib/utils";
 import { getDocumentGroups } from "@/app//api/doc_backend";
 import DocsTable from "@/components/DocsTable/DocsTable";
 
-export default function Page({params}) {
+export default function Page() {
     const [open, setOpen] = useState(false);
     const [docGroups, setDocGroups] = useState([]);
     const [projectName, setProjectName] = useState(null);

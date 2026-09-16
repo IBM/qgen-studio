@@ -2,7 +2,7 @@
 
 import { Button, Heading, Section, Tabs, TabList, Tab, TabPanels, TabPanel, Dropdown, NumberInput, Tile, TextInput, TextArea, Toggle, ComboBox, ProgressBar } from "@carbon/react";
 import { ArrowRight } from "@carbon/icons-react";
-import { useState, useEffect } from "react";
+import { use, useState, useEffect } from "react";
 
 import {
     getTrainedModels,
@@ -14,7 +14,8 @@ import { getDocumentGroups, listDocs } from "../../../api/doc_backend";
 import { getDoc } from "@/app/api/doc_backend";
 import "./explorer.scss"
 
-export default function Page({ params }) {
+export default function Page(props) {
+    const params = use(props.params);
     const [docTitle, setDocTitle] = useState("Document Title");
     const [docFile, setDocFile] = useState("Document Original File");
     const [docIds, setDocIds] = useState([]);
@@ -204,7 +205,7 @@ export default function Page({ params }) {
                                     rows={2}
                                     id="query" />
                             </div>
-                            <div style={{ display: "flex", flexDirection: "row-reverse" }}><Button onClick={handleSubmit} renderIcon={ArrowRight} hasIconOnly></Button></div>
+                            <div style={{ display: "flex", flexDirection: "row-reverse" }}><Button onClick={handleSubmit} renderIcon={ArrowRight} hasIconOnly iconDescription="Submit question" /></div>
                             {showProgressBar && (
                                 <div style={{ marginTop: "1rem" }}>
                                     <ProgressBar
