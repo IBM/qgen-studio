@@ -40,8 +40,9 @@ export default function Page() {
                     <div style={{minWidth: "25%", height: "100%", border: "gray solid 2px"}}>
                         <ContainedList label="Document Groups" kind="disclosed" size="md">
                             {docGroups.map((docGroup)=>
-                                <ContainedListItem 
-                                    // onClick={()=>handleEditPrompt(prompt.question, prompt.answer)} 
+                                <ContainedListItem
+                                    key={docGroup.name}
+                                    // onClick={()=>handleEditPrompt(prompt.question, prompt.answer)}
                                     onClick={()=>setProjectName(docGroup.name)}
                                     >
                                     <strong>{docGroup.name}</strong>
