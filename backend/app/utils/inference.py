@@ -6,6 +6,7 @@ from sentence_transformers import SentenceTransformer, util, CrossEncoder
 import torch
 
 from ..configs import config
+from .paths import safe_join
 
 MODELS_PATH = config.models_path
 
@@ -69,8 +70,8 @@ def inference_mlx_adapter(document_path: str,
                       query: str,
                       adapter_name: str = None):
     """ Run inference using mlx adapter. """
-    config_path = os.path.join(MODELS_PATH, adapter_name, 'adapter_config.json')
-    adapter_path = os.path.join(MODELS_PATH, adapter_name)
+    adapter_path = safe_join(MODELS_PATH, adapter_name)
+    config_path = os.path.join(adapter_path, 'adapter_config.json')
     with open(config_path, 'r') as f:
         config_file = json.load(f)
         model_id = config_file['model']
