@@ -14,6 +14,7 @@ from ibm_watsonx_ai.foundation_models import ModelInference
 
 
 from .metrics import *
+from .paths import safe_join
 from ..configs import config
 
 
@@ -237,7 +238,7 @@ def get_prompt(dataset_id: str, framework: str, prompt_type: str):
         few_shot_prompt = PROMPTS['watsonx_few_shot_prompt']
     else:
         few_shot_prompt = PROMPTS['few_shot_prompt']
-    prompt_file_path = os.path.join(PROMPTS_PATH, dataset_id + '.prompts.json')
+    prompt_file_path = safe_join(PROMPTS_PATH, dataset_id + '.prompts.json')
     if not os.path.exists(prompt_file_path):
         print("using zero shot")
         if framework == 'IBM watsonx':
