@@ -4,11 +4,12 @@ import json
 from typing import Annotated
 from urllib.parse import unquote
 
-from fastapi import APIRouter, Depends, Body, UploadFile, Form, Request
+from fastapi import APIRouter, Depends, Body, UploadFile, Form, Request, HTTPException
 
 from ..configs import config
 from ..utils.metrics import filter_by_metric
 from ..utils.train import process_dataset_mlx, train_mlx
+from ..utils.paths import safe_join
 from .models import TrainRequest
 
 
@@ -30,7 +31,7 @@ def get_train_datasets(dataset_ids: list, filter: bool = False):
     """ Return datasets for training. """
     train_datasets = []
     for i in range(len(dataset_ids)):
-        dataset_dir = os.path.join(DATASETS_PATH, dataset_ids[i])
+        dataset_dir = safe_join(DATASETS_PATH, dataset_ids[i])
         dataset_files = os.listdir(dataset_dir)
         for file in dataset_files:
             with open(os.path.join(dataset_dir, file), 'r') as f:
@@ -60,6 +61,9 @@ async def train_mlx_model(request: TrainRequest):
     datasets = request.datasets
     adapter_name = request.adapterName
     filterDataset = request.filterDataset
+
+    if model_id not in MLX_MODELS:
+        raise HTTPException(status_code=400, detail='Unsupported model')
 
     # Parameters
     iters = request.parameters.iters
@@ -99,8 +103,8 @@ async def train_mlx_model(request: TrainRequest):
         else:
             train_dataset = get_train_datasets(dataset_ids=datasets, filter=False)
                                 
-        data_dir = os.path.join(MLX_DATA_PATH, adapter_name)
-        model_save_dir = os.path.join(MODELS_PATH, adapter_name)
+        data_dir = safe_join(MLX_DATA_PATH, adapter_name)
+        model_save_dir = safe_join(MODELS_PATH, adapter_name)
 
         # Process MLX Data here
         process_dataset_mlx(dataset=train_dataset, 
@@ -123,7 +127,7 @@ async def train_mlx_model(request: TrainRequest):
         response_object = {'status': 'success', 'exception': ''}
 
     except Exception as e:
-        response_object = {'status': 'fail', 'exception': str(e)}
+        response_object = {'status': 'fail', 'exception': 'Training failed. Check the server logs for details.'}
         print(e)
         
     return response_object

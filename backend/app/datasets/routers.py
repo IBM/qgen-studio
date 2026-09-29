@@ -8,6 +8,7 @@ from fastapi import APIRouter, Depends, Body, UploadFile, Form
 
 from ..utils.metrics import get_sentence_spans, get_text_spans
 from ..configs import config
+from ..utils.paths import safe_join
 from .models import DataEntry
 # from .utils import create_data_entries
 
@@ -24,13 +25,13 @@ router = APIRouter(
 
 # Moving to router because __init__ messes with the SentenceTransformers (it also imports utils from dataset)
 def create_data_entries(project_name:str) -> list[DataEntry]:
-    dataset_dir_path = os.path.join(DATASETS_PATH, 
-                                    project_name)
+    dataset_dir_path = safe_join(DATASETS_PATH,
+                                 project_name)
     if not os.path.exists(dataset_dir_path):
         return []
     dataset_names = [f for f in os.listdir(dataset_dir_path) if f.endswith('.json')]
     datasets = [
-        json.load(open(os.path.join(DATASETS_PATH, project_name, dn)))
+        json.load(open(os.path.join(dataset_dir_path, dn)))
         for dn in dataset_names
     ]
     data_entries = [

@@ -2,6 +2,7 @@ from tqdm import tqdm
 import random
 import os
 import json
+import subprocess
 
 from mlx_lm import load, generate
 
@@ -77,29 +78,26 @@ def train_mlx(data: str,
               max_seq_length: int = 2048,
               grad_checkpoint: bool = False):
     """ Train adapters with MLX. For example yaml file - https://github.com/ml-explore/mlx-examples/blob/main/llms/mlx_lm/examples/lora_config.yaml """
-    train_command = '''mlx_lm.lora \
-                --model {model} \
-                --train \
-                --fine-tune-type lora \
-                --data {data} \
-                --iters {iters} \
-                --num-layers {lora_layers} \
-                --batch-size {batch_size} \
-                --learning-rate {learning_rate} \
-                --steps-per-eval {steps_per_eval} \
-                --adapter-path {adapter_path} \
-                --max-seq-length {max_seq_length}'''
-    test_command = '''mlx_lm.lora \
-                --model {model} \
-                --test \
-                --data {data} \
-                --adapter-path {adapter_path}'''
+    # Arguments are passed as a list (no shell) so request values can't inject commands
     if train == True:
-        command = train_command.format(model=model, data=data, iters=iters, lora_layers=lora_layers, 
-                                batch_size=batch_size, learning_rate=learning_rate, steps_per_eval=steps_per_eval,
-                                adapter_path=adapter_path, max_seq_length=max_seq_length)
-        os.system(command)
+        command = ['mlx_lm.lora',
+                   '--model', model,
+                   '--train',
+                   '--fine-tune-type', 'lora',
+                   '--data', data,
+                   '--iters', str(iters),
+                   '--num-layers', str(lora_layers),
+                   '--batch-size', str(batch_size),
+                   '--learning-rate', str(learning_rate),
+                   '--steps-per-eval', str(steps_per_eval),
+                   '--adapter-path', adapter_path,
+                   '--max-seq-length', str(max_seq_length)]
+        subprocess.run(command, check=True)
     if test == True:
-        command = test_command.format(model=model, data=data, adapter_path=adapter_path)
-        os.system(command)
+        command = ['mlx_lm.lora',
+                   '--model', model,
+                   '--test',
+                   '--data', data,
+                   '--adapter-path', adapter_path]
+        subprocess.run(command, check=True)
     return

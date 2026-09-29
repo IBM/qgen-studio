@@ -9,6 +9,7 @@ from ibm_watsonx_ai.foundation_models.utils.enums import ModelTypes
 
 from ..configs import config
 from ..utils.inference import inference_mlx_adapter, inference_mlx_model
+from ..utils.paths import safe_join
 from .models import InferenceRequest
 
 CORPUS_PATH = config.corpus_path
@@ -56,7 +57,7 @@ async def run_inference_mlx_adapter(request: InferenceRequest):
     document_name = request.documentName
     document_group = request.documentGroup
     # Remove .json if needed
-    document_path = os.path.join(CORPUS_PATH, document_group, document_name + '.json')
+    document_path = safe_join(CORPUS_PATH, document_group, document_name + '.json')
     query = request.query
     adapter_name = request.adapterName
     response = inference_mlx_adapter(document_path=document_path, query=query, adapter_name=adapter_name)
@@ -69,7 +70,7 @@ async def run_inference_mlx_model(request: InferenceRequest):
     document_name = request.documentName
     document_group = request.documentGroup
     # Remove .json if needed
-    document_path = os.path.join(CORPUS_PATH, document_group, document_name + '.json')
+    document_path = safe_join(CORPUS_PATH, document_group, document_name + '.json')
     model_id = request.modelId
     query = request.query
     response = inference_mlx_model(document_path=document_path, query=query, model_id=model_id)

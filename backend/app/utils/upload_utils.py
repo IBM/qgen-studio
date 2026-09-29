@@ -7,6 +7,7 @@ from tqdm import tqdm
 
 from docling.document_converter import DocumentConverter
 from ..configs import config
+from .paths import safe_join
 
 
 UPLOADS_FILE_PATH = config.upload_path
@@ -57,7 +58,7 @@ def process_urls(file_path: str, final_path: str):
         cleaned_result = extract_text_between_headings(markdown_result)
         file_title = cleaned_result[0].strip().split("\n\n")[0]
         annnotated_corpus = get_corpus_ids(cleaned_result)
-        with open(os.path.join(final_path, file_title + ".json"), "w") as f:
+        with open(safe_join(final_path, file_title + ".json"), "w") as f:
             json.dump(annnotated_corpus, f)
         outputs[file_title] = annnotated_corpus
     return outputs
@@ -79,7 +80,7 @@ def process_pdfs(file_path: str, final_path: str):
         markdown_result = result.document.export_to_markdown()
         cleaned_result = extract_text_between_headings(markdown_result)
         annnotated_corpus = get_corpus_ids(cleaned_result)
-        with open(os.path.join(final_path, file_name + ".json"), "w") as f:
+        with open(safe_join(final_path, file_name + ".json"), "w") as f:
             json.dump(annnotated_corpus, f)
         outputs[file_name] = annnotated_corpus
     return outputs
@@ -96,7 +97,7 @@ def process_single_pdf(file_path: str, final_path: str):
     cleaned_result = extract_text_between_headings(markdown_result)
     file_title = cleaned_result[0].strip().split("\n\n")[0]
     annnotated_corpus = get_corpus_ids(cleaned_result)
-    with open(os.path.join(final_path, file_title + ".json"), "w") as f:
+    with open(safe_join(final_path, file_title + ".json"), "w") as f:
         json.dump(annnotated_corpus, f)
     outputs[file_name] = annnotated_corpus
     return outputs
@@ -121,7 +122,7 @@ def get_file_type(file_path: str):
 
 def process_context_upload(file_paths: list, doc_group_id: str):
     """ Process the uploaded files. """
-    corpus_doc_group_dir = os.path.join(CORPUS_FILE_PATH, doc_group_id)
+    corpus_doc_group_dir = safe_join(CORPUS_FILE_PATH, doc_group_id)
     for i in range(len(file_paths)):
         file = file_paths[i].split('/')[-1]
         file_path = file_paths[i]

@@ -9,6 +9,7 @@ from ibm_watsonx_ai.foundation_models.utils.enums import ModelTypes
 
 from ..configs import config
 from ..utils.generation import generate_qa_pairs
+from ..utils.paths import safe_join
 from .models import GenerationRequest
 
 
@@ -50,10 +51,11 @@ async def generate_data(request: GenerationRequest):
 
     try:
         for i in range(len(dataset_ids)):
-            dataset_files = os.listdir(os.path.join(CORPUS_PATH, dataset_ids[i]))
+            corpus_dir = safe_join(CORPUS_PATH, dataset_ids[i])
+            dataset_files = os.listdir(corpus_dir)
             for j in range(len(dataset_files)):
-                dataset_file_path = os.path.join(CORPUS_PATH, dataset_ids[i], dataset_files[j])
-                gen_file_path = os.path.join(DATASETS_PATH, dataset_ids[i])
+                dataset_file_path = os.path.join(corpus_dir, dataset_files[j])
+                gen_file_path = safe_join(DATASETS_PATH, dataset_ids[i])
                 if not os.path.exists(gen_file_path):
                     os.makedirs(gen_file_path)
                 with open(dataset_file_path, 'r') as f:
@@ -71,7 +73,7 @@ async def generate_data(request: GenerationRequest):
                     json.dump(generated_data, f)
         response_object = {'status': 'success', 'exception': ''}
     except Exception as e:
-        response_object = {'status': 'fail', 'exception': str(e)}
+        response_object = {'status': 'fail', 'exception': 'Data generation failed. Check the server logs for details.'}
         print(e)
     return response_object
 
