@@ -78,26 +78,25 @@ def train_mlx(data: str,
               max_seq_length: int = 2048,
               grad_checkpoint: bool = False):
     """ Train adapters with MLX. For example yaml file - https://github.com/ml-explore/mlx-examples/blob/main/llms/mlx_lm/examples/lora_config.yaml """
-    # Arguments are passed as a list (no shell) so request values can't inject commands
     if train == True:
-        command = ['mlx_lm.lora',
-                   '--model', model,
-                   '--train',
-                   '--fine-tune-type', 'lora',
-                   '--data', data,
-                   '--iters', str(iters),
-                   '--num-layers', str(lora_layers),
-                   '--batch-size', str(batch_size),
-                   '--learning-rate', str(learning_rate),
-                   '--steps-per-eval', str(steps_per_eval),
-                   '--adapter-path', adapter_path,
-                   '--max-seq-length', str(max_seq_length)]
-        subprocess.run(command, check=True)
+        subprocess.run(['mlx_lm.lora',
+                        '--model', str(model),
+                        '--train',
+                        '--fine-tune-type', 'lora',
+                        '--data', str(data),
+                        '--iters', str(iters),
+                        '--num-layers', str(lora_layers),
+                        '--batch-size', str(batch_size),
+                        '--learning-rate', str(learning_rate),
+                        '--steps-per-eval', str(steps_per_eval),
+                        '--adapter-path', str(adapter_path),
+                        '--max-seq-length', str(max_seq_length)],
+                       check=True)
     if test == True:
-        command = ['mlx_lm.lora',
-                   '--model', model,
-                   '--test',
-                   '--data', data,
-                   '--adapter-path', adapter_path]
-        subprocess.run(command, check=True)
+        subprocess.run(['mlx_lm.lora',
+                        '--model', str(model),
+                        '--test',
+                        '--data', str(data),
+                        '--adapter-path', str(adapter_path)],
+                       check=True)
     return
